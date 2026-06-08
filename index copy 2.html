@@ -1,0 +1,1050 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        max-width: 100%;
+        width: 100%;
+        height: 100px;
+        gap: 1rem;
+      }
+      .grid-header {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid black;
+        max-width: 100%;
+        width: 100%;
+        height: auto;
+      }
+      .header-row-bottom {
+        display: flex;
+        border-top: 1px solid black;
+      }
+      .nfe-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        border: 1px solid black;
+        width: 10%;
+        height: 80px;
+        gap: 0.5rem;
+        justify-content: center;
+      }
+      .header-row-bottom {
+        display: flex;
+      }
+      .header-row-bottom div:nth-child(1) {
+        border-right: 1px solid black;
+        width: 40%;
+      }
+      hr {
+        border: 1px dashed;
+      }
+      .second {
+        display: flex;
+        align-items: center;
+        height: 100% auto;
+      }
+      .box {
+        border: 1px solid black;
+        height: 270px;
+      }
+      .box-img img {
+        max-width: 400px;
+        max-height: 140px;
+      }
+      .box-img {
+        display: flex;
+        justify-content: center;
+      }
+      .midle {
+        width: 15%;
+      }
+      .box-1 {
+        width: 45%;
+      }
+      .box-2 {
+        width: 60%;
+      }
+      .middle {
+        text-align: center;
+        width: 15%;
+        padding: 20px;
+      }
+      .middle-info {
+        display: flex;
+        align-items: center;
+        gap: 3rem;
+        justify-content: center;
+      }
+      .middle-entrada {
+        text-align: left;
+      }
+      .number {
+        border: 1px solid black;
+        padding: 20px;
+      }
+      .info,
+      .chave {
+        border-bottom: 1px solid black;
+      }
+      .chave {
+        height: 20%;
+      }
+      .info,
+      .info-footer {
+        height: 40%;
+      }
+      .barcode {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        height: 80px;
+        gap: 2px;
+      }
+
+      .bar {
+        background: black;
+      }
+
+      .thin {
+        width: 2px;
+        height: 100%;
+      }
+      .medium {
+        width: 4px;
+        height: 100%;
+      }
+      .thick {
+        width: 6px;
+        height: 100%;
+      }
+      .third {
+        border: 1px solid black;
+      }
+
+      .top {
+        display: flex;
+        border-bottom: 1px solid black;
+      }
+      .top-1 {
+        width: 45%;
+      }
+      .top-2 {
+        width: 55%;
+        border: none;
+      }
+      .under {
+        display: flex;
+      }
+      .third {
+        margin-top: 20px;
+        border-right: none;
+      }
+      .third div {
+        border-right: 1px solid black;
+      }
+      .under div {
+        width: 33.3%;
+      }
+      .fourth {
+        display: flex;
+        flex-direction: column;
+      }
+      .fourth h2 {
+        margin: 0;
+        margin-top: 20px;
+      }
+      .fourth-grid {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 250px;
+        gap: 2rem;
+      }
+      .fourth-boxes {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        border: 1px solid black;
+        width: 90%;
+      }
+      .fourth-boxes div {
+        width: 100%;
+        border-bottom: 1px solid black;
+        border-right: 1px solid black;
+      }
+      .fourth-end {
+        border: 1px solid black;
+
+        width: 15%;
+      }
+      .fourth-end div {
+        border-bottom: 1px solid black;
+      }
+      .five h2 {
+        padding-top: 20px;
+        margin-top: 20px;
+        margin: 0;
+      }
+      .five-boxes {
+        display: flex;
+        border: 1px solid black;
+      }
+      .five-boxes div {
+        width: 100%;
+        padding-top: 10px;
+        border-top: 1px solid black;
+        border-right: 1px solid black;
+      }
+      .sixth {
+        font-family: Arial, sans-serif;
+      }
+
+      .sixth h2 {
+        margin-bottom: 6px;
+      }
+
+      .sixth-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        border: 1px solid #000;
+      }
+
+      .sixth-grid .item {
+        border: 1px solid #000;
+        padding: 4px 6px;
+        font-size: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .sixth-grid .item span,
+      p {
+        font-size: 12px;
+      }
+
+      .sixth-grid .item strong {
+        text-align: right;
+        font-size: 11px;
+      }
+
+      /* Se quiser destacar o total */
+      .sixth-grid .total {
+        background: #f5f5f5;
+        font-weight: bold;
+      }
+
+      .seven-grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        border: 1px solid #000;
+        font-family: Arial, sans-serif;
+      }
+
+      .seven-box {
+        border: 1px solid #000;
+        padding: 3px 5px;
+        font-size: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .seven h2 {
+        margin: 0;
+        margin-top: 20px;
+      }
+
+      .seven-box span {
+        font-size: 20px;
+        line-height: 1.1;
+      }
+      .transport-flex {
+        display: flex;
+        flex-wrap: wrap;
+        border: 1px solid #000;
+        font-family: Arial, sans-serif;
+      }
+
+      .transport-flex .seven-box {
+        border: 1px solid #000;
+        padding: 3px 5px;
+        font-size: 20px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      /* larguras */
+      .w-40 {
+        width: 40%;
+      }
+      .w-50 {
+        width: 50%;
+      }
+      .w-30 {
+        width: 30%;
+      }
+      .w-18 {
+        width: 18%;
+      }
+      .w-16 {
+        width: 16%;
+      }
+      .w-15 {
+        width: 15%;
+      }
+      .w-10 {
+        width: 10%;
+      }
+      .w-5 {
+        width: 5%;
+      }
+
+      .transport-flex span {
+        font-size: 16px;
+      }
+
+      .transport-flex strong {
+        font-size: 10px;
+      }
+      .itens-nf {
+        border: 1px solid #000;
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+      }
+
+      .itens-nf .row {
+        display: flex;
+      }
+
+      .itens-nf .col {
+        border: 1px solid #000;
+        padding: 3px 4px;
+        box-sizing: border-box;
+        line-height: 1.2;
+      }
+
+      .itens-nf .header {
+        background: #f2f2f2;
+        font-weight: bold;
+        font-size: 16px;
+      }
+
+      /* larguras (%) */
+      .w-26 {
+        width: 26%;
+      }
+      .w-8 {
+        width: 8%;
+      }
+      .w-7 {
+        width: 7%;
+      }
+      .w-6 {
+        width: 6%;
+      }
+      .w-5 {
+        width: 5%;
+      }
+      .w-4 {
+        width: 4%;
+      }
+
+      /* alinhamentos */
+      .itens-nf .col:nth-child(n + 7) {
+        text-align: right;
+      }
+      .issqn-flex {
+        display: flex;
+        width: 100%;
+      }
+      .issqn-flex .seven-box {
+        width: 100%;
+      }
+      .issqn-flex h2 {
+        margin: 0;
+        margin-bottom: 20px auto;
+      }
+      .dados-adicionais {
+        display: flex;
+        flex-wrap: wrap;
+        border: 1px solid #000;
+        font-family: Arial, sans-serif;
+      }
+
+      .dados-adicionais .seven-box {
+        border: 1px solid #000;
+        padding: 4px 6px;
+        font-size: 9px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 100px;
+      }
+
+      .dados-adicionais span {
+        font-size: 15px;
+        margin-bottom: 4px;
+      }
+
+      .dados-adicionais .texto {
+        flex: 1;
+        font-size: 12px;
+        line-height: 1.3;
+      }
+
+      /* larguras */
+      .w-75 {
+        width: 50%;
+      }
+      .w-25 {
+        width: 50%;
+      }
+      h2 {
+        margin: 0;
+        margin-top: 20px auto;
+      }
+
+      e {
+        size: A4;
+        margin: 8mm;
+      }
+
+      @media print {
+        html,
+        body {
+          width: 210mm;
+          height: 297mm;
+          margin: 0;
+          padding: 0;
+        }
+
+        body {
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+
+        /* CONTAINER PRINCIPAL DA NOTA */
+        .nota-fiscal {
+          width: 100%;
+          page-break-inside: avoid;
+          break-inside: avoid;
+          max-height: 297mm;
+          overflow: hidden;
+        }
+
+        /* EVITA QUEBRAR QUALQUER BLOCO */
+        .nota-fiscal *,
+        section,
+        div {
+          page-break-inside: avoid;
+          break-inside: avoid;
+        }
+
+        /* CASO PRECISE FORÇAR QUEBRA */
+        .page-break {
+          page-break-before: always;
+          break-before: page;
+        }
+      }
+      .nota-fiscal {
+        width: 290mm; /* largura real útil */
+        min-height: 277mm; /* altura real útil */
+        margin: 0 auto;
+      }
+      @media print {
+        * {
+          box-sizing: border-box;
+        }
+
+        html,
+        body {
+          width: 210mm;
+          height: 297mm;
+          margin: 0;
+          padding: 0;
+          font-family: Arial, Helvetica, sans-serif;
+          font-size: 11px;
+        }
+
+        .nota {
+          width: 190mm;
+          margin: 0 auto;
+        }
+
+        .bloco {
+          border: 1px solid #000;
+          padding: 4px;
+          margin-bottom: 3mm;
+        }
+
+        .titulo-bloco {
+          font-weight: bold;
+          font-size: 11px;
+          margin-bottom: 2px;
+        }
+
+        table {
+          width: 100%;
+          border-collapse: collapse;
+        }
+
+        table td,
+        table th {
+          border: 1px solid #000;
+          padding: 3px;
+          font-size: 10px;
+        }
+
+        .page-break {
+          page-break-before: always;
+        }
+
+        /* Evita quebra feia no meio */
+        .no-break {
+          page-break-inside: avoid;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="nota-fiscal">
+      <header>
+        <div class="grid-header">
+          <div>
+            <p>
+              RECEBEMOS DE Airsoft Comércio Importação e Exportação Ltda. OS
+              PRODUTOS CONSTANTES DA NOTA FISCAL INDICADA
+            </p>
+          </div>
+          <div class="header-row-bottom">
+            <div><p>Data de recebimento</p></div>
+            <div><p>Identificação e assinatura do recebedor</p></div>
+          </div>
+        </div>
+        <div class="nfe-box">
+          <div>NF-e</div>
+          <div><strong>N° 000286</strong></div>
+          <div>Série 1</div>
+        </div>
+      </header>
+      <hr />
+      <div class="second">
+        <div class="box box-1">
+          <div class="box-img"><img src="./image.png" alt="" /></div>
+          <div class="box-text">
+            <p>
+              <strong>Airsoft Comércio Importação e Exportações Ltda.</strong>
+            </p>
+            <p>
+              Avenida Nossa Senhora do Carmo, 1650, lj. 48, Carmo, 30 330-000 -
+              Belo Horizonte - MG
+            </p>
+            <p>
+              Fone (31) 3286-3227 www.bopeairsoft.com.br -
+              bopeairsoft@bopeairsoft.com.br
+            </p>
+          </div>
+        </div>
+        <div class="middle">
+          <strong>DANFE</strong>
+          <p>Documento Auxiliar de Nota Fiscal Eletrônica</p>
+          <div class="middle-info">
+            <div class="middle-entrada">
+              <p>0-Entrada</p>
+              <p>1-Saída</p>
+            </div>
+            <div class="number">1</div>
+          </div>
+          <div class="end" style="text-align: left">
+            <strong>Ṇ000286</strong>
+            <p>SÉRIE: 1</p>
+            <p>Página: 1 de 1</p>
+          </div>
+        </div>
+        <div class="box box-2">
+          <div class="info">
+            Controle do Fisco
+
+            <div class="barcode">
+              <div class="bar thin"></div>
+              <div class="bar thick"></div>
+              <div class="bar medium"></div>
+              <div class="bar thin"></div>
+              <div class="bar thick"></div>
+              <div class="bar medium"></div>
+              <div class="bar thin"></div>
+              <div class="bar thick"></div>
+              <div class="bar medium"></div>
+              <div class="bar thin"></div>
+              <div class="bar thick"></div>
+              <div class="bar thin"></div>
+              <div class="bar thick"></div>
+              <div class="bar medium"></div>
+              <div class="bar thin"></div>
+              <div class="bar thick"></div>
+              <div class="bar medium"></div>
+              <div class="bar thin"></div>
+              <div class="bar thick"></div>
+              <div class="bar medium"></div>
+              <div class="bar thin"></div>
+              <div class="bar thick"></div>
+              <div class="bar thin"></div>
+              <div class="bar thick"></div>
+              <div class="bar medium"></div>
+              <div class="bar thin"></div>
+              <div class="bar thick"></div>
+              <div class="bar medium"></div>
+              <div class="bar thin"></div>
+              <div class="bar thick"></div>
+              <div class="bar medium"></div>
+              <div class="bar thin"></div>
+              <div class="bar thick"></div>
+              <div class="bar thin"></div>
+              <div class="bar thick"></div>
+              <div class="bar medium"></div>
+              <div class="bar thin"></div>
+              <div class="bar thick"></div>
+              <div class="bar medium"></div>
+              <div class="bar thin"></div>
+              <div class="bar thick"></div>
+              <div class="bar medium"></div>
+              <div class="bar thin"></div>
+              <div class="bar thick"></div>
+              <div class="bar thin"></div>
+              <div class="bar thick"></div>
+              <div class="bar medium"></div>
+              <div class="bar thin"></div>
+              <div class="bar thick"></div>
+              <div class="bar medium"></div>
+              <div class="bar thin"></div>
+              <div class="bar thick"></div>
+              <div class="bar medium"></div>
+              <div class="bar thin"></div>
+              <div class="bar thick"></div>
+              <div class="bar thin"></div>
+              <div class="bar thick"></div>
+              <div class="bar medium"></div>
+              <div class="bar thin"></div>
+              <div class="bar thick"></div>
+              <div class="bar medium"></div>
+              <div class="bar thin"></div>
+              <div class="bar thin"></div>
+              <div class="bar thick"></div>
+              <div class="bar thin"></div>
+              <div class="bar thick"></div>
+              <div class="bar thin"></div>
+              <div class="bar thick"></div>
+              <div class="bar thick"></div>
+            </div>
+          </div>
+          <div class="chave">
+            Chave de acesso
+            <div style="padding-left: 64px">
+              3120 0511 5083 2900 0184 5500 1000 0002 8617 4700 2413
+            </div>
+          </div>
+          <div class="info-footer" style="padding-left: 10px">
+            <p>Consulta de autenticidade no portal nacional da NF-e</p>
+            <p>www.nfe.fazenda.gov.br/portal</p>
+            <p>ou no site da Sefaz autorizada</p>
+          </div>
+        </div>
+      </div>
+      <div class="third">
+        <div class="top">
+          <div class="top-1">
+            <p>Número da operação</p>
+            <p>Venda de mercadorias</p>
+          </div>
+          <div class="top-2">
+            <p>Protocolo de autorização de uso</p>
+            <p>1312036634220280585/2020 16:11:29</p>
+          </div>
+        </div>
+        <div class="under">
+          <div>
+            <p>Inscrição Estadual</p>
+            <p>002920619000-17</p>
+          </div>
+          <div><p>Inscr. est. do substrib.</p></div>
+          <div>
+            <p>CNPJ</p>
+            <p>11.508.329/0001-84</p>
+          </div>
+        </div>
+      </div>
+      <div class="fourth">
+        <h2 style="margin: 0; padding: 0">Destinatário/Remetente</h2>
+        <div class="fourth-grid">
+          <div class="fourth-boxes">
+            <div>
+              <p>Nome / Razão Social</p>
+              <p>Matheus Felipe Ferreira Azevedo</p>
+            </div>
+            <div>
+              <p>CNPJ/CPF:</p>
+              <p>2104.874.396-94</p>
+            </div>
+            <div>
+              <p>Inscrição Estadual</p>
+            </div>
+            <div>
+              <p>Endereço</p>
+              <p>Rua chopotó, 490</p>
+            </div>
+            <div>
+              <p>Bairro</p>
+              <p>Pindorama</p>
+            </div>
+            <div>
+              <p>CEP</p>
+              <p>30.880-510</p>
+            </div>
+            <div>
+              <p>Município</p>
+              <p>Belo Horizonte</p>
+            </div>
+            <div>
+              <p>FONE/FAX:</p>
+              <p>(37) 9973-6969</p>
+            </div>
+            <div>
+              <p>UF</p>
+              <p>MG</p>
+            </div>
+          </div>
+          <div class="fourth-end">
+            <div>
+              <p>Data emissão</p>
+              <p>05/05/2018</p>
+            </div>
+            <div>
+              <p>Data de saída</p>
+              <p>05/05/2018</p>
+            </div>
+            <div>
+              <p>Hora saída</p>
+              <p>16:11:28</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="five">
+        <h2>Faturas</h2>
+        <div class="five-grid">
+          <div class="five-boxes">
+            <div>
+              <strong>Número</strong>
+              <div>001</div>
+            </div>
+            <div>
+              <strong>Vencimento</strong>
+              <div>05/05/2018</div>
+            </div>
+            <div>
+              <strong>Valor</strong>
+              <div>R$5.284,66</div>
+            </div>
+            <div>
+              <strong>Número</strong>
+              <div>001</div>
+            </div>
+            <div>
+              <strong>Número</strong>
+              <div></div>
+            </div>
+            <div>
+              <strong>Vencimento</strong>
+              <div></div>
+            </div>
+            <div>
+              <strong>Valor</strong>
+              <div></div>
+            </div>
+            <div>
+              <strong>Número</strong>
+              <div></div>
+            </div>
+            <div>
+              <strong>Vencimento</strong>
+              <div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sixth">
+        <h2>Cálculo do imposto</h2>
+
+        <div class="sixth-grid">
+          <div class="item">
+            <span>Base de cálculo do ICMS</span>
+            <strong>0,00</strong>
+          </div>
+
+          <div class="item">
+            <span>Valor do ICMS</span>
+            <strong>0,00</strong>
+          </div>
+
+          <div class="item">
+            <span>Base de cálculo do ICMS Subst.</span>
+            <strong>0,00</strong>
+          </div>
+
+          <div class="item">
+            <span>Valor do ICMS Subst.</span>
+            <strong>0,00</strong>
+          </div>
+
+          <div class="item">
+            <span>Valor total dos produtos</span>
+            <strong>R$ 5.284,66</strong>
+          </div>
+
+          <!-- Linha 2 -->
+          <div class="item">
+            <span>Valor total do frete</span>
+            <strong>0,00</strong>
+          </div>
+
+          <div class="item">
+            <span>Valor do seguro</span>
+            <strong>0,00</strong>
+          </div>
+
+          <div class="item">
+            <span>Desconto</span>
+            <strong>0,00</strong>
+          </div>
+
+          <div class="item">
+            <span>Outras despesas acessórias</span>
+            <strong>0,00</strong>
+          </div>
+
+          <div class="item">
+            <span>Valor do IPI</span>
+            <strong>0,00</strong>
+          </div>
+
+          <div class="item total">
+            <span>Valor total da nota</span>
+            <strong>R$ 5.284,66</strong>
+          </div>
+        </div>
+      </div>
+      <div class="seven">
+        <h2>Transportador / Volumes transportados</h2>
+
+        <div class="transport-flex">
+          <div class="seven-box w-40">
+            <span>Nome / Razão Social</span>
+            <strong></strong>
+          </div>
+
+          <div class="seven-box w-15">
+            <span>Frete por conta</span>
+            <strong
+              >0 - Contratação do Frete por conta do Remetente (CIF)</strong
+            >
+          </div>
+
+          <div class="seven-box w-15">
+            <span>Código ANTT</span>
+            <strong></strong>
+          </div>
+
+          <div class="seven-box w-10">
+            <span>Placa do veículo</span>
+            <strong></strong>
+          </div>
+
+          <div class="seven-box w-5">
+            <span>UF</span>
+            <strong></strong>
+          </div>
+
+          <div class="seven-box w-15">
+            <span>CNPJ / CPF</span>
+            <strong></strong>
+          </div>
+
+          <!-- Linha 2 -->
+          <div class="seven-box w-50">
+            <span>Endereço</span>
+            <strong></strong>
+          </div>
+
+          <div class="seven-box w-30">
+            <span>Município</span>
+            <strong></strong>
+          </div>
+
+          <div class="seven-box w-5">
+            <span>UF</span>
+            <strong></strong>
+          </div>
+
+          <div class="seven-box w-15">
+            <span>Inscrição Estadual</span>
+            <strong></strong>
+          </div>
+
+          <!-- Linha 3 -->
+          <div class="seven-box w-16">
+            <span>Quantidade</span>
+            <strong></strong>
+          </div>
+
+          <div class="seven-box w-16">
+            <span>Espécie</span>
+            <strong></strong>
+          </div>
+
+          <div class="seven-box w-16">
+            <span>Marca</span>
+            <strong></strong>
+          </div>
+
+          <div class="seven-box w-16">
+            <span>Numeração</span>
+            <strong></strong>
+          </div>
+
+          <div class="seven-box w-18">
+            <span>Peso Bruto</span>
+            <strong>0,000</strong>
+          </div>
+
+          <div class="seven-box w-18">
+            <span>Peso Líquido</span>
+            <strong>0,000</strong>
+          </div>
+        </div>
+      </div>
+      <div class="eight">
+        <h2>Itens da nota fiscal</h2>
+
+        <div class="itens-nf">
+          <!-- Cabeçalho -->
+          <div class="row header">
+            <div class="col w-6">Código</div>
+            <div class="col w-26">Descrição do produto / serviço</div>
+            <div class="col w-7">NCM/SH</div>
+            <div class="col w-6">CSOSN</div>
+            <div class="col w-5">CFOP</div>
+            <div class="col w-4">UN</div>
+            <div class="col w-5">Qtde</div>
+            <div class="col w-8">Valor unit.</div>
+            <div class="col w-8">Valor total</div>
+            <div class="col w-6">BC ICMS</div>
+            <div class="col w-6">Vlr. ICMS</div>
+            <div class="col w-6">Vlr. IPI</div>
+            <div class="col w-5">%ICMS</div>
+            <div class="col w-5">%IPI</div>
+          </div>
+
+          <!-- Item -->
+          <div class="row">
+            <div class="col w-6">CFOPS102</div>
+            <div class="col w-26">
+              Airsoft Pistola Glock G17 Gen5 Umarex Gbb 6mm Blowback Black
+            </div>
+            <div class="col w-7">93040090</div>
+            <div class="col w-6">1400</div>
+            <div class="col w-5">5.102</div>
+            <div class="col w-4">UN</div>
+            <div class="col w-5">1,00</div>
+            <div class="col w-8">2.499,93</div>
+            <div class="col w-8">2.499,93</div>
+            <div class="col w-6">0,00</div>
+            <div class="col w-6">0,00</div>
+            <div class="col w-6">0,00</div>
+            <div class="col w-5">0,00</div>
+            <div class="col w-5">0,00</div>
+          </div>
+          <!-- Item -->
+          <div class="row">
+            <div class="col w-6">CFOPS102</div>
+            <div class="col w-26">PIST PRESSAO WINGUN W401 CO2 4,5MM</div>
+            <div class="col w-7">93040090</div>
+            <div class="col w-6">1400</div>
+            <div class="col w-5">5.102</div>
+            <div class="col w-4">UN</div>
+            <div class="col w-5">1,00</div>
+            <div class="col w-8">2.784,73</div>
+            <div class="col w-8">2.784,73</div>
+            <div class="col w-6">0,00</div>
+            <div class="col w-6">0,00</div>
+            <div class="col w-6">0,00</div>
+            <div class="col w-5">0,00</div>
+            <div class="col w-5">0,00</div>
+          </div>
+        </div>
+      </div>
+      <div class="nine">
+        <h2>Cálculo do ISSQN</h2>
+
+        <div class="issqn-flex">
+          <div class="seven-box w-30">
+            <span>Inscrição Municipal</span>
+            <strong>02530410016</strong>
+          </div>
+
+          <div class="seven-box w-25">
+            <span>Valor total dos serviços</span>
+            <strong>0,00</strong>
+          </div>
+
+          <div class="seven-box w-25">
+            <span>Base de cálculo do ISSQN</span>
+            <strong>0,00</strong>
+          </div>
+
+          <div class="seven-box w-20">
+            <span>Valor do ISSQN</span>
+            <strong>0,00</strong>
+          </div>
+        </div>
+      </div>
+      <div class="ten">
+        <h2>Dados adicionais</h2>
+
+        <div class="dados-adicionais">
+          <div class="seven-box w-75">
+            <div class="texto">
+              DOCUMENTO EMITIDO POR ME OU EPP OPTANTE PELO SIMPLES NACIONAL. NÃO
+              GERA DIREITO A CRÉDITO FISCAL DE ICMS.
+            </div>
+            <div class="texto">
+              Remetente optante pelo Simples Nacional - Suspnsa a obrigação do
+              recolhimento do Diferencial de Alíquotas até o julgamento final da
+              ação, por força de decisão do STF em 17/02/2016, na ADIN n° 5464
+            </div>
+            <div class="texto">Serial: 19A50470</div>
+          </div>
+
+          <div class="seven-box w-25">
+            <span>Reservado ao fisco</span>
+            <div class="texto"></div>
+          </div>
+        </div>
+        <p style="text-align: right">05/05/2020 16:11:38</p>
+      </div>
+    </div>
+  </body>
+</html>
