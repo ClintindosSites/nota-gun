@@ -5,520 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-      }
-      header {
-        display: flex;
-        align-items: center;
-        max-width: 100%;
-        width: 100%;
-        height: 100px;
-        gap: 1rem;
-      }
-      .grid-header {
-        display: flex;
-        flex-direction: column;
-        border: 1px solid black;
-        max-width: 100%;
-        width: 100%;
-        height: auto;
-      }
-      .header-row-bottom {
-        display: flex;
-        border-top: 1px solid black;
-      }
-      .nfe-box {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        border: 1px solid black;
-        width: 10%;
-        height: 80px;
-        gap: 0.5rem;
-        justify-content: center;
-      }
-      .header-row-bottom {
-        display: flex;
-      }
-      .header-row-bottom div:nth-child(1) {
-        border-right: 1px solid black;
-        width: 40%;
-      }
-      hr {
-        border: 1px dashed;
-      }
-      .second {
-        display: flex;
-        align-items: center;
-        height: 100% auto;
-      }
-      .box {
-        border: 1px solid black;
-        height: 270px;
-      }
-      .box-img img {
-        max-width: 400px;
-        max-height: 140px;
-      }
-      .box-img {
-        display: flex;
-        justify-content: center;
-      }
-      .midle {
-        width: 15%;
-      }
-      .box-1 {
-        width: 45%;
-      }
-      .box-2 {
-        width: 60%;
-      }
-      .middle {
-        text-align: center;
-        width: 15%;
-        padding: 20px;
-      }
-      .middle-info {
-        display: flex;
-        align-items: center;
-        gap: 3rem;
-        justify-content: center;
-      }
-      .middle-entrada {
-        text-align: left;
-      }
-      .number {
-        border: 1px solid black;
-        padding: 20px;
-      }
-      .info,
-      .chave {
-        border-bottom: 1px solid black;
-      }
-      .chave {
-        height: 20%;
-      }
-      .info,
-      .info-footer {
-        height: 40%;
-      }
-      .barcode {
-        display: flex;
-        justify-content: center;
-        align-items: flex-end;
-        height: 80px;
-        gap: 2px;
-      }
-
-      .bar {
-        background: black;
-      }
-
-      .thin {
-        width: 2px;
-        height: 100%;
-      }
-      .medium {
-        width: 4px;
-        height: 100%;
-      }
-      .thick {
-        width: 6px;
-        height: 100%;
-      }
-      .third {
-        border: 1px solid black;
-      }
-
-      .top {
-        display: flex;
-        border-bottom: 1px solid black;
-      }
-      .top-1 {
-        width: 45%;
-      }
-      .top-2 {
-        width: 55%;
-        border: none;
-      }
-      .under {
-        display: flex;
-      }
-      .third {
-        margin-top: 20px;
-        border-right: none;
-      }
-      .third div {
-        border-right: 1px solid black;
-      }
-      .under div {
-        width: 33.3%;
-      }
-      .fourth {
-        display: flex;
-        flex-direction: column;
-      }
-      .fourth h2 {
-        margin: 0;
-        margin-top: 20px;
-      }
-      .fourth-grid {
-        display: flex;
-        align-items: center;
-        width: 100%;
-        height: 250px;
-        gap: 2rem;
-      }
-      .fourth-boxes {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        border: 1px solid black;
-        width: 90%;
-      }
-      .fourth-boxes div {
-        width: 100%;
-        border-bottom: 1px solid black;
-        border-right: 1px solid black;
-      }
-      .fourth-end {
-        border: 1px solid black;
-
-        width: 15%;
-      }
-      .fourth-end div {
-        border-bottom: 1px solid black;
-      }
-      .five h2 {
-        padding-top: 20px;
-        margin-top: 20px;
-        margin: 0;
-      }
-      .five-boxes {
-        display: flex;
-        border: 1px solid black;
-      }
-      .five-boxes div {
-        width: 100%;
-        padding-top: 10px;
-        border-top: 1px solid black;
-        border-right: 1px solid black;
-      }
-      .sixth {
-        font-family: Arial, sans-serif;
-      }
-
-      .sixth h2 {
-        margin-bottom: 6px;
-      }
-
-      .sixth-grid {
-        display: grid;
-        grid-template-columns: repeat(6, 1fr);
-        border: 1px solid #000;
-      }
-
-      .sixth-grid .item {
-        border: 1px solid #000;
-        padding: 4px 6px;
-        font-size: 10px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-      }
-
-      .sixth-grid .item span,
-      p {
-        font-size: 12px;
-      }
-
-      .sixth-grid .item strong {
-        text-align: right;
-        font-size: 11px;
-      }
-
-      /* Se quiser destacar o total */
-      .sixth-grid .total {
-        background: #f5f5f5;
-        font-weight: bold;
-      }
-
-      .seven-grid {
-        display: grid;
-        grid-template-columns: repeat(12, 1fr);
-        border: 1px solid #000;
-        font-family: Arial, sans-serif;
-      }
-
-      .seven-box {
-        border: 1px solid #000;
-        padding: 3px 5px;
-        font-size: 20px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-      }
-      .seven h2 {
-        margin: 0;
-        margin-top: 20px;
-      }
-
-      .seven-box span {
-        font-size: 20px;
-        line-height: 1.1;
-      }
-      .transport-flex {
-        display: flex;
-        flex-wrap: wrap;
-        border: 1px solid #000;
-        font-family: Arial, sans-serif;
-      }
-
-      .transport-flex .seven-box {
-        border: 1px solid #000;
-        padding: 3px 5px;
-        font-size: 20px;
-        box-sizing: border-box;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-      }
-
-      /* larguras */
-      .w-40 {
-        width: 40%;
-      }
-      .w-50 {
-        width: 50%;
-      }
-      .w-30 {
-        width: 30%;
-      }
-      .w-18 {
-        width: 18%;
-      }
-      .w-16 {
-        width: 16%;
-      }
-      .w-15 {
-        width: 15%;
-      }
-      .w-10 {
-        width: 10%;
-      }
-      .w-5 {
-        width: 5%;
-      }
-
-      .transport-flex span {
-        font-size: 16px;
-      }
-
-      .transport-flex strong {
-        font-size: 10px;
-      }
-      .itens-nf {
-        border: 1px solid #000;
-        font-family: Arial, sans-serif;
-        font-size: 12px;
-      }
-
-      .itens-nf .row {
-        display: flex;
-      }
-
-      .itens-nf .col {
-        border: 1px solid #000;
-        padding: 3px 4px;
-        box-sizing: border-box;
-        line-height: 1.2;
-      }
-
-      .itens-nf .header {
-        background: #f2f2f2;
-        font-weight: bold;
-        font-size: 16px;
-      }
-
-      /* larguras (%) */
-      .w-26 {
-        width: 26%;
-      }
-      .w-8 {
-        width: 8%;
-      }
-      .w-7 {
-        width: 7%;
-      }
-      .w-6 {
-        width: 6%;
-      }
-      .w-5 {
-        width: 5%;
-      }
-      .w-4 {
-        width: 4%;
-      }
-
-      /* alinhamentos */
-      .itens-nf .col:nth-child(n + 7) {
-        text-align: right;
-      }
-      .issqn-flex {
-        display: flex;
-        width: 100%;
-      }
-      .issqn-flex .seven-box {
-        width: 100%;
-      }
-      .issqn-flex h2 {
-        margin: 0;
-        margin-bottom: 20px auto;
-      }
-      .dados-adicionais {
-        display: flex;
-        flex-wrap: wrap;
-        border: 1px solid #000;
-        font-family: Arial, sans-serif;
-      }
-
-      .dados-adicionais .seven-box {
-        border: 1px solid #000;
-        padding: 4px 6px;
-        font-size: 9px;
-        box-sizing: border-box;
-        display: flex;
-        flex-direction: column;
-        padding-bottom: 100px;
-      }
-
-      .dados-adicionais span {
-        font-size: 15px;
-        margin-bottom: 4px;
-      }
-
-      .dados-adicionais .texto {
-        flex: 1;
-        font-size: 12px;
-        line-height: 1.3;
-      }
-
-      /* larguras */
-      .w-75 {
-        width: 50%;
-      }
-      .w-25 {
-        width: 50%;
-      }
-      h2 {
-        margin: 0;
-        margin-top: 20px auto;
-      }
-
-      e {
-        size: A4;
-        margin: 8mm;
-      }
-
-      @media print {
-        html,
-        body {
-          width: 210mm;
-          height: 297mm;
-          margin: 0;
-          padding: 0;
-        }
-
-        body {
-          -webkit-print-color-adjust: exact;
-          print-color-adjust: exact;
-        }
-
-        /* CONTAINER PRINCIPAL DA NOTA */
-        .nota-fiscal {
-          width: 100%;
-          page-break-inside: avoid;
-          break-inside: avoid;
-          max-height: 297mm;
-          overflow: hidden;
-        }
-
-        /* EVITA QUEBRAR QUALQUER BLOCO */
-        .nota-fiscal *,
-        section,
-        div {
-          page-break-inside: avoid;
-          break-inside: avoid;
-        }
-
-        /* CASO PRECISE FORÇAR QUEBRA */
-        .page-break {
-          page-break-before: always;
-          break-before: page;
-        }
-      }
-      .nota-fiscal {
-        width: 290mm; /* largura real útil */
-        min-height: 277mm; /* altura real útil */
-        margin: 0 auto;
-      }
-      @media print {
-        * {
-          box-sizing: border-box;
-        }
-
-        html,
-        body {
-          width: 210mm;
-          height: 297mm;
-          margin: 0;
-          padding: 0;
-          font-family: Arial, Helvetica, sans-serif;
-          font-size: 11px;
-        }
-
-        .nota {
-          width: 190mm;
-          margin: 0 auto;
-        }
-
-        .bloco {
-          border: 1px solid #000;
-          padding: 4px;
-          margin-bottom: 3mm;
-        }
-
-        .titulo-bloco {
-          font-weight: bold;
-          font-size: 11px;
-          margin-bottom: 2px;
-        }
-
-        table {
-          width: 100%;
-          border-collapse: collapse;
-        }
-
-        table td,
-        table th {
-          border: 1px solid #000;
-          padding: 3px;
-          font-size: 10px;
-        }
-
-        .page-break {
-          page-break-before: always;
-        }
-
-        /* Evita quebra feia no meio */
-        .no-break {
-          page-break-inside: avoid;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="nota-fiscal">
@@ -654,7 +141,7 @@
           <div class="chave">
             Chave de acesso
             <div style="padding-left: 64px">
-              3120 0511 5083 2900 0184 5500 1000 0002 8617 4700 2413
+              3120 0511 5083 2900 0184 5500 1000 0002 8917 8700 2973
             </div>
           </div>
           <div class="info-footer" style="padding-left: 10px">
@@ -937,48 +424,52 @@
         </div>
       </div>
       <div class="eight">
-        <h2>Itens da nota fiscal</h2>
+        <h2>Itens da Nota Fiscal</h2>
 
-        <div class="itens-nf">
-          <!-- Cabeçalho -->
-          <div class="row header">
-            <div class="col w-6">Código</div>
-            <div class="col w-26">Descrição do produto / serviço</div>
-            <div class="col w-7">NCM/SH</div>
-            <div class="col w-6">CSOSN</div>
-            <div class="col w-5">CFOP</div>
-            <div class="col w-4">UN</div>
-            <div class="col w-5">Qtde</div>
-            <div class="col w-8">Valor unit.</div>
-            <div class="col w-8">Valor total</div>
-            <div class="col w-6">BC ICMS</div>
-            <div class="col w-6">Vlr. ICMS</div>
-            <div class="col w-6">Vlr. IPI</div>
-            <div class="col w-5">%ICMS</div>
-            <div class="col w-5">%IPI</div>
-          </div>
+        <table class="nf-table">
+          <thead>
+            <tr>
+              <th>Código</th>
+              <th>Descrição do Produto / Serviço</th>
+              <th>NCM/SH</th>
+              <th>CSOSN</th>
+              <th>CFOP</th>
+              <th>UN</th>
+              <th>Qtde</th>
+              <th>Valor Unit.</th>
+              <th>Valor Total</th>
+              <th>BC ICMS</th>
+              <th>Vlr. ICMS</th>
+              <th>Vlr. IPI</th>
+              <th>% ICMS</th>
+              <th>% IPI</th>
+            </tr>
+          </thead>
 
-          <!-- Item -->
-          <div class="row">
-            <div class="col w-6">CFOPS102</div>
-            <div class="col w-26">
-              Rifle Airsoft M4 6mm Aeg Sa-f02 Flex 380fps Tan Specna Arms
-            </div>
-            <div class="col w-7">93040090</div>
-            <div class="col w-6">1400</div>
-            <div class="col w-5">5.102</div>
-            <div class="col w-4">UN</div>
-            <div class="col w-5">1,00</div>
-            <div class="col w-8">2.783,95</div>
-            <div class="col w-8">2.783,95</div>
-            <div class="col w-6">0,00</div>
-            <div class="col w-6">0,00</div>
-            <div class="col w-6">0,00</div>
-            <div class="col w-5">0,00</div>
-            <div class="col w-5">0,00</div>
-          </div>
-        </div>
+          <tbody>
+            <tr>
+              <td>CFOPS102</td>
+              <td>
+                Rifle Airsoft M4 6mm Aeg Sa-f02 Flex 380fps Tan Specna Arms
+              </td>
+              <td>93040090</td>
+              <td>1400</td>
+              <td>5.102</td>
+              <td>UN</td>
+              <td>1,00</td>
+              <td>2.783,95</td>
+              <td>2.783,95</td>
+              <td>0,00</td>
+              <td>0,00</td>
+              <td>0,00</td>
+              <td>0,00</td>
+              <td>0,00</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
+      <!---->
+
       <div class="nine">
         <h2>Cálculo do ISSQN</h2>
 
